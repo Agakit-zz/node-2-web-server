@@ -35,17 +35,7 @@ hbs.registerHelper('screamIt', (text) => {
   return text.toUpperCase();
 })
 
-// //app.get('/', (req, res) =>{
-//   res.send ({
-//     name: 'Tanya',
-//     likes: [
-//       'Biking',
-//       'Cities'
-//     ]
-//   });
-// });
-
-app.get('/', (req,res) =>{
+app.get('/home', (req,res) =>{
   res.render('home.hbs', {
     pageTitle: 'Home page',
     WellcomeMessage: 'Wellcome to my website',
@@ -61,6 +51,12 @@ app.get('/about', (req, res) =>{
 app.get('/bad', (req, res) => {
   res.send({
     errorMessage: 'Unable to handle request'
+  });
+});
+
+app.get ('/projects', (req, res) => {
+  res.render('projects.hbs', {
+    pageTitle: 'Projects'
   });
 });
 
