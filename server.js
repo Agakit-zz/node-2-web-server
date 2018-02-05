@@ -2,6 +2,7 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+const port = process.env.PORT || 3000;
 var app = express ();
 
 hbs.registerPartials(__dirname + '/views/partials')
@@ -14,7 +15,7 @@ app.use((req, res, next) => {
   console.log(log);
   fs.appendFile('server.log', log + '\n', (err) => {
     if (err) {
-      console.log('Unable to append to server.log.')
+      console.log('Unable to append to server.log.');
     }
   });
   next();
@@ -47,7 +48,7 @@ app.get('/', (req, res) =>{
 app.get('/home', (req,res) =>{
   res.render('home.hbs', {
     pageTitle: 'Home page',
-    WellcomeMessage: 'Wellcome to my websyte',
+    WellcomeMessage: 'Wellcome to my website',
     currentYear: new Date().getFullYear()
   });
 });
@@ -63,6 +64,6 @@ app.get('/bad', (req, res) => {
   });
 });
 
-console.log('Server is up on port 3000');
-
-app.listen(3000);
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
+});
